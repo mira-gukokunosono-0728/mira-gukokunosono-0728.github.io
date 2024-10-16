@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>自学CS61A Project1 Hog（核心篇）（第二期） | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言我是愚谷ノ園みら，简称愚園みら，本账号的使用者之一的负责分享学习笔记的oc，呃话说oc真的应该干涉现实事务吗？总之，みら最近开始学习CS61A。打算记一点笔记激励自己学下去。 啊，忘了说的CS61A是一门……课？总之是UC Berkeley的CS入门课。嘛反正点开这篇文章的人应该不需要我来介绍CS61A是什么了（大概……） 以下部分都是基于已经装完环境，下载了相关课件，并且会使用ok进行评分的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自学CS61A Project1 Hog（核心篇）（第二期）">
+<meta property="og:url" content="http://example.com/2024/10/09/hog002/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言我是愚谷ノ園みら，简称愚園みら，本账号的使用者之一的负责分享学习笔记的oc，呃话说oc真的应该干涉现实事务吗？总之，みら最近开始学习CS61A。打算记一点笔记激励自己学下去。 啊，忘了说的CS61A是一门……课？总之是UC Berkeley的CS入门课。嘛反正点开这篇文章的人应该不需要我来介绍CS61A是什么了（大概……） 以下部分都是基于已经装完环境，下载了相关课件，并且会使用ok进行评分的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-10-09T17:43:10.993Z">
+<meta property="article:modified_time" content="2024-10-11T17:57:31.699Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/10/09/hog002/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '自学CS61A Project1 Hog（核心篇）（第二期）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-10-11 18:57:31'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Hexo"><span class="site-name">Hexo</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">自学CS61A Project1 Hog（核心篇）（第二期）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-10-09T17:43:10.993Z" title="Created 2024-10-09 18:43:10">2024-10-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-10-11T17:57:31.699Z" title="Updated 2024-10-11 18:57:31">2024-10-11</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="自学CS61A Project1 Hog（核心篇）（第二期）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我是愚谷ノ園みら，简称愚園みら，本账号的使用者之一的负责分享学习笔记的oc，呃话说oc真的应该干涉现实事务吗？总之，みら最近开始学习CS61A。打算记一点笔记激励自己学下去。</p>
+<p>啊，忘了说的CS61A是一门……课？总之是UC Berkeley的CS入门课。嘛反正点开这篇文章的人应该不需要我来介绍CS61A是什么了（大概……）</p>
+<p>以下部分都是基于已经装完环境，下载了相关课件，并且会使用ok进行评分的假设。<br>我也是初学者，请多包涵～如有错误，敬请斧正！</p>
+<h1 id="总之是正文"><a href="#总之是正文" class="headerlink" title="总之是正文"></a>总之是正文</h1><p>因为懒，我将会把这一段东西再重新，呃，复制粘贴一遍。<br>CS61A的第一个project是要制作一个叫hog的小游戏。以下是一些关于这个project的一些碎碎念，希望能帮到有需要的同学们。<br>详情请参考：<a target="_blank" rel="noopener" href="https://cs61a.org/proj/hog/">https://cs61a.org/proj/hog/</a><br>这是Hog项目的主要网站（作业要求），本文之后的内容将会围绕这里的题目。<br>以及课程课本的翻译件：<a target="_blank" rel="noopener" href="https://composingprograms.netlify.app/">https://composingprograms.netlify.app/</a><br>非常好课本，使我的理解加深十倍甚至九倍。</p>
+<p>如果把Hog的规则和追加规则也写进来的话，太长了，恕我贴一下上一篇的链接，请诸君自己看一看～<br>本篇内容是在理解规则的基础上！</p>
+<p>呜哇这个东西总共有12题啊……<br>上次才做完第零题，今天我们来看前四题。</p>
+<h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><p>我们需要在<code>hog.py</code>写<code>roll_dice</code>这个函数，其功能：投掷<code>num_rolls</code>个骰子并计算得分。<br>这里请允许我再次介绍基础的得分规则：投掷0～10个骰子，若没有投到1，则得分为所有骰子点数之和；否则得分固定为1。<br>本函数的输入：</p>
+<ul>
+<li><code>int num_rolls</code>（投掷个数）</li>
+<li><code>function dice=six_sided</code>（骰子：默认六面）<br>本函数的输出：<code>int score</code><br>鉴于老师们已经提供了dice()这个方法（在上一篇中也有提到），我们只需要调用dice()即可投掷骰子。<br>（实际上这和random.randint(1,6)是一样的，但更模块化（赞））<br>因此实现的思路也很简单，先初始化<code>score=0</code>，再<code>for</code>循环<code>num_rolls</code>次，每次把骰子点数累加上去。</li>
+</ul>
+<p>值得注意的是Sow Sad规则。只要有一次投掷有遇到1，那么总体得分就会是1。<br>熟悉编程的同学们可能会立刻想到，在每次点数累加之前用<code>if</code>进行判断，如果遇到1，就立刻<code>return 1</code>就可以达成任务了。<br>实际上在提示里也提到这一点：在loop中提前return会打断loop。<br>但其实并不可以这么操作，原因：提前打断loop会打乱测试骰子的计数，导致通不过OK测试。嘛，在现实中肯定是提前打断更好。<br>但在这里，恕我使用一种似乎更为低效，但符合要求的方式：<br>再在函数的开头创建一个变量记录是否有投掷到1，默认为False，如果投掷到1就把这个变量变成True，在最后再判断输出score还是输出1。<br>这种思路的代码实现如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">roll_dice</span>(<span class="params">num_rolls, dice=six_sided</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Simulate rolling the DICE exactly NUM_ROLLS &gt; 0 times. Return the sum of</span></span><br><span class="line"><span class="string">    the outcomes unless any of the outcomes is 1. In that case, return 1.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    num_rolls:  The number of dice rolls that will be made.</span></span><br><span class="line"><span class="string">    dice:       A function that simulates a single dice roll outcome.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># These assert statements ensure that num_rolls is a positive integer.</span></span><br><span class="line">    <span class="keyword">assert</span> <span class="built_in">type</span>(num_rolls) == <span class="built_in">int</span>, <span class="string">&#x27;num_rolls must be an integer.&#x27;</span></span><br><span class="line">    <span class="keyword">assert</span> num_rolls &gt; <span class="number">0</span>, <span class="string">&#x27;Must roll at least once.&#x27;</span></span><br><span class="line">    <span class="comment"># BEGIN PROBLEM 1</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="comment"># Initialize score to 0</span></span><br><span class="line">    score = <span class="number">0</span></span><br><span class="line">    is_sow_sad = <span class="literal">False</span></span><br><span class="line">    <span class="comment"># Roll the dice num_rolls times</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num_rolls):</span><br><span class="line">        roll = dice()</span><br><span class="line">        <span class="comment"># The Sow Sad rule: If any roll is 1, set is_sow_sad to 1</span></span><br><span class="line">        <span class="keyword">if</span> roll == <span class="number">1</span>:</span><br><span class="line">            is_sow_sad = <span class="literal">True</span></span><br><span class="line">        score += roll</span><br><span class="line">    <span class="comment"># Return the sum of the outcomes if not sow sad</span></span><br><span class="line">    <span class="keyword">if</span> is_sow_sad == <span class="literal">False</span>:</span><br><span class="line">        <span class="keyword">return</span> score</span><br><span class="line">    <span class="comment"># Return 1 if sow sad</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="comment"># END PROBLEM 1</span></span><br></pre></td></tr></table></figure>
+<p>以上是第一题。</p>
+<h2 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h2><p>接下来要实现<code>boar_brawl</code>函数。回忆一下规则，这个规则是投掷0个骰子时的特殊得分规则。<br>如果玩家选择投掷0个骰子，则获得对手分数的十位数与自己分数的个位数之差的绝对值的三倍。若这个数为0，则获得1分。<br>输入：</p>
+<ul>
+<li><code>int player_score</code>（玩家分数）</li>
+<li><code>int opponent_score</code>（对手分数）<br>输出：Boar Brawl规则下的得分。</li>
+</ul>
+<p>鉴于我们的这个函数有<code>player_score, opponent_score</code>作为输入，我们可以通过整除法<code>//</code>和取余<code>%</code>操作这些数，取到它们的个位与十位，再用<code>abs()</code>取绝对值。<br>实际上如果把数字转化为字符串，然后再用对列表的操作会更容易，但这是作业要求里明令禁止的。<br>我们根据规则的公式，将计算结果存储在<code>boar_brawl_score</code>这个变量中，<br>再用最大值函数<code>max()</code>取1和<code>boar_brawl_score</code>的最大值作为输出。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">boar_brawl</span>(<span class="params">player_score, opponent_score</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return the points scored by rolling 0 dice according to Boar Brawl.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    player_score:     The total score of the current player.</span></span><br><span class="line"><span class="string">    opponent_score:   The total score of the other player.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># BEGIN PROBLEM 2</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    boar_brawl_score = <span class="number">3</span> * <span class="built_in">abs</span>((opponent_score // <span class="number">10</span>) % <span class="number">10</span> - player_score % <span class="number">10</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">max</span>(<span class="number">1</span>, boar_brawl_score)</span><br><span class="line">    <span class="comment"># END PROBLEM 2</span></span><br></pre></td></tr></table></figure>
+<p>以上是第二题。</p>
+<h2 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h2><p>第三题的目标是写一个叫做<code>take_turns</code>的函数，目标是得到投掷骰子后的分数。<br>输入：</p>
+<ul>
+<li><code>int num_rolls</code>（投掷数）</li>
+<li><code>int player_score</code>（玩家分数）</li>
+<li><code>int opponent_score</code>（对手分数）</li>
+<li><code>fuction dice=six_sided</code>（骰子：默认六面）<br>输出：我方本轮得分</li>
+</ul>
+<p>实际上可以看到这个函数本质上就是整合了基础规则和附加规则1后的产物。<br>我们只需要用if判断条件即可。<br>节选代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">take_turn</span>(<span class="params">num_rolls, player_score, opponent_score, dice=six_sided</span>):</span><br><span class="line"><span class="comment"># 以下省略几行东西</span></span><br><span class="line">    <span class="keyword">if</span> num_rolls == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> boar_brawl(player_score, opponent_score)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> roll_dice(num_rolls, dice)</span><br></pre></td></tr></table></figure>
+<p>以上是第三题。</p>
+<p>值得注意的是：课件提供的代码里已经有一个叫<code>simple_update</code>的函数，整合了上述几个功能。</p>
+<h2 id="第四题"><a href="#第四题" class="headerlink" title="第四题"></a>第四题</h2><p>在第四题中，我们将要实现Sus Fuss这个规则（这里的Sus是猪属的意思，而不是可疑的意思）。<br>回顾：如果结算时，玩家的分数有3或4个因数（包括自身与1），则分数自动增长到下一个质数。</p>
+<p>我们该如何实现这个功能？容我先拆分这个问题。<br>以下只是我个人的拆分方式，作为一个新手，我的分析可能有错或不标准的地方。希望能为个位读者带来抛砖引玉的作用。</p>
+<p>首先，这个函数需要在哪里调用呢？<br>由于这是在每一轮骰子投掷之后，加分之后进行的，对方的回合开始之前。<br>所以应该是在<code>take_turn</code>的结算之后。</p>
+<p>然后，它需要什么输入呢？<br>由于它的计算方式只和个人的分数相关，所以只需要自己的分数<code>int score</code>即可。</p>
+<p>至于输出的话……也是结束之后自己的分数即可（它不会改变对手的分数）。所以输出也是一个<code>int</code>。</p>
+<p>接下来是步骤中需要用到的东西。</p>
+<p><em>如果结算时，玩家的分数<strong>有3或4个因数</strong>……</em><br>我们需要一个函数判定<code>score</code>是否有3或4个因数。</p>
+<p><em>则分数自动增长到<strong>下一个质数</strong>。</em><br>我们需要一个判定下一个质数的函数。<br>（值得注意的是老师已经给出了一个判定正整数是否是质数的函数<code>is_prime</code>。）</p>
+<p>然后当然要把它们整合。</p>
+<p>以下是作业中的那几个函数。</p>
+<h3 id="num-factors函数"><a href="#num-factors函数" class="headerlink" title="num_factors函数"></a><code>num_factors</code>函数</h3><p>作用：判断某个数有几个因数<br>输入：<code>int n</code><br>输出：<code>int factors</code><br>使用for循环，对1到n的所有数，判定：n是否能整除i？若能，则将因数+1。<br>代码实现如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">num_factors</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return the number of factors of N, including 1 and N itself.&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># BEGIN PROBLEM 4</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    factors = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> n % i == <span class="number">0</span>:</span><br><span class="line">            factors += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> factors</span><br><span class="line">    <span class="comment"># END PROBLEM 4</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="sus-points函数"><a href="#sus-points函数" class="headerlink" title="sus_points函数"></a><code>sus_points</code>函数</h3><p>作用：判定分数是否需要上升至下一个质数。如果需要，返回新的分数；如果不需要，返回原本的分数。<br>输入：<code>int score</code><br>输出：<code>int sus_point</code><br>思路如下：<br>先判定输入分数是否有3或4个因数。<br>如果是，依次判定之后的数是否是质数，找到下一个质数。输出这个数。<br>如果不是，直接输出输入值。</p>
+<p>寻找下一个质数的过程，我用了while循环，每次判断这个数是否是质数，不是就+1，直到找到为止。</p>
+<p>代码实现如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sus_points</span>(<span class="params">score</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return the new score of a player taking into account the Sus Fuss rule.&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># BEGIN PROBLEM 4</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">if</span> num_factors(score) == <span class="number">3</span> <span class="keyword">or</span> num_factors(score) ==<span class="number">4</span>:</span><br><span class="line">        sus_point = score</span><br><span class="line">        <span class="keyword">while</span> is_prime(sus_point) == <span class="literal">False</span>:</span><br><span class="line">            sus_point += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> sus_point</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> score</span><br><span class="line">    <span class="comment"># END PROBLEM 4</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="sus-update函数"><a href="#sus-update函数" class="headerlink" title="sus_update函数"></a><code>sus_update</code>函数</h3><p>这个函数的作用是计算出Sus Fuss规则下的分数。</p>
+<p>作业中已经包含了simple_update这个函数，用于更新有Boar Brawl规则下的分数。其实我们可以直接调用这个函数的……吧。但我还是选择用我们之前在第三题中写的<code>take_turns</code>函数。</p>
+<p>输入：<br><code>int num_rolls</code> 投掷的骰子数量<br><code>int player_score</code> 玩家的分数<br><code>int opponent_score</code> 对手的分数<br><code>function dice=six_sided</code> 骰子（默认六面）<br>输出：<br><code>int score</code> 考虑两条追加规则后的最终分数</p>
+<p>首先，<code>take_turn</code>是怎么用的？<br>输入<code>num_rolls</code>，<code>int player_score</code>，<code>int opponent_score</code>（和 <code>dice</code>），输出包含Boar Brawl规则的加分。<br>也就是说，如果要得到回合结束时的分数，需要用当前分数加上这个函数的输出值。<br>容我将这个数据存在变量<code>updated_score</code>中。<br>然后，刚写的<code>sus_points</code>呢？输入分数，输出更新后的分数。<br>那么再把<code>updated_score</code>设为<code>sus_points(updated_score)</code><br>最后再输出即可。</p>
+<p>代码如下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sus_update</span>(<span class="params">num_rolls, player_score, opponent_score, dice=six_sided</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return the total score of a player who starts their turn with</span></span><br><span class="line"><span class="string">    PLAYER_SCORE and then rolls NUM_ROLLS DICE, *including* Sus Fuss.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># BEGIN PROBLEM 4</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    updated_score = player_score + take_turn(num_rolls, player_score, opponent_score, dice)</span><br><span class="line">    updated_score = sus_points(updated_score)</span><br><span class="line">    <span class="keyword">return</span> updated_score</span><br><span class="line">    <span class="comment"># END PROBLEM 4</span></span><br></pre></td></tr></table></figure>
+<p>此处调用<code>take_turn</code>的时候，dice这个参数需要是dice而不是<code>dice=six_sided</code>。在<code>sus_update</code>所在的帧，dice是一个变量，是调用<code>sus_update</code>时传入的参数。</p>
+<p>这样一路向下传，最终，我们在最外层传入的参数就可以统一地运用在过程中的每一个函数里。</p>
+<p>啊，其实写<code>take_turn</code>函数的时候也有类似的情况，忘了说了。</p>
+<p>以上就是第四题了。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2024/10/09/hog002/">http://example.com/2024/10/09/hog002/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/10/11/hog003/" title="自学CS61A Project1 Hog（核心篇）（第三期）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">自学CS61A Project1 Hog（核心篇）（第三期）</div></div></a></div><div class="next-post pull-right"><a href="/2024/10/08/hog001/" title="自学CS61A Project1 Hog（核心篇）（第一期）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">自学CS61A Project1 Hog（核心篇）（第一期）</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E4%B9%8B%E6%98%AF%E6%AD%A3%E6%96%87"><span class="toc-number"></span> <span class="toc-text">总之是正文</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">第一题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">第二题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">第三题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">第四题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#num-factors%E5%87%BD%E6%95%B0"><span class="toc-number">4.1.</span> <span class="toc-text">num_factors函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sus-points%E5%87%BD%E6%95%B0"><span class="toc-number">4.2.</span> <span class="toc-text">sus_points函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sus-update%E5%87%BD%E6%95%B0"><span class="toc-number">4.3.</span> <span class="toc-text">sus_update函数</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/13/hog007/" title="自学CS61A Project1 Hog（追加篇）（第二期）">自学CS61A Project1 Hog（追加篇）（第二期）</a><time datetime="2024-10-13T12:54:32.620Z" title="Created 2024-10-13 13:54:32">2024-10-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/12/hog005/" title="自学CS61A Project1 Hog（策略篇）（第二期）">自学CS61A Project1 Hog（策略篇）（第二期）</a><time datetime="2024-10-12T16:12:54.173Z" title="Created 2024-10-12 17:12:54">2024-10-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/11/hog004/" title="自学CS61A Project1 Hog（策略篇）（第一期）">自学CS61A Project1 Hog（策略篇）（第一期）</a><time datetime="2024-10-11T17:58:42.642Z" title="Created 2024-10-11 18:58:42">2024-10-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/11/hog006/" title="自学CS61A Project1 Hog（追加篇）（第一期）">自学CS61A Project1 Hog（追加篇）（第一期）</a><time datetime="2024-10-11T17:56:49.722Z" title="Created 2024-10-11 18:56:49">2024-10-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/11/hog003/" title="自学CS61A Project1 Hog（核心篇）（第三期）">自学CS61A Project1 Hog（核心篇）（第三期）</a><time datetime="2024-10-11T16:16:43.121Z" title="Created 2024-10-11 17:16:43">2024-10-11</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

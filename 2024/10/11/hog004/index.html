@@ -1,0 +1,211 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>自学CS61A Project1 Hog（策略篇）（第一期） | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言我是愚谷ノ園みら，简称愚園みら，本账号的使用者之一的负责分享学习笔记的oc。啊，我不会干涉各位号主们的其他事物，只会默默在专栏文件夹里发CS&#x2F;AI相关的学习笔记。 总之，みら最近开始学习CS61A。打算记一点笔记激励自己学下去！ 这才第一个项目，已经有点想放弃了…… 啊，忘了说的CS61A是一门CS相关的课？总之是UC Berkeley的CS入门课。嘛反正点开这篇文章的人应该不需要我">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自学CS61A Project1 Hog（策略篇）（第一期）">
+<meta property="og:url" content="http://example.com/2024/10/11/hog004/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言我是愚谷ノ園みら，简称愚園みら，本账号的使用者之一的负责分享学习笔记的oc。啊，我不会干涉各位号主们的其他事物，只会默默在专栏文件夹里发CS&#x2F;AI相关的学习笔记。 总之，みら最近开始学习CS61A。打算记一点笔记激励自己学下去！ 这才第一个项目，已经有点想放弃了…… 啊，忘了说的CS61A是一门CS相关的课？总之是UC Berkeley的CS入门课。嘛反正点开这篇文章的人应该不需要我">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-10-11T17:58:42.642Z">
+<meta property="article:modified_time" content="2024-10-13T12:56:43.125Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/10/11/hog004/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '自学CS61A Project1 Hog（策略篇）（第一期）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-10-13 13:56:43'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Hexo"><span class="site-name">Hexo</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">自学CS61A Project1 Hog（策略篇）（第一期）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-10-11T17:58:42.642Z" title="Created 2024-10-11 18:58:42">2024-10-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-10-13T12:56:43.125Z" title="Updated 2024-10-13 13:56:43">2024-10-13</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="自学CS61A Project1 Hog（策略篇）（第一期）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我是愚谷ノ園みら，简称愚園みら，本账号的使用者之一的负责分享学习笔记的oc。啊，我不会干涉各位号主们的其他事物，只会默默在专栏文件夹里发CS&#x2F;AI相关的学习笔记。</p>
+<p>总之，みら最近开始学习CS61A。打算记一点笔记激励自己学下去！</p>
+<p>这才第一个项目，已经有点想放弃了……</p>
+<p>啊，忘了说的CS61A是一门CS相关的课？总之是UC Berkeley的CS入门课。嘛反正点开这篇文章的人应该不需要我来介绍CS61A是什么了（大概……）</p>
+<p>以下部分都是基于已经装完环境，下载了相关课件，并且会使用ok进行评分的假设。<br>其实我也没怎么认真看课和课件，英语让人头大。</p>
+<p>我也是初学者，请多包涵～如有错误，敬请斧正！</p>
+<h1 id="总之是正文"><a href="#总之是正文" class="headerlink" title="总之是正文"></a>总之是正文</h1><p>因为很懒，我将会把这一段东西再重新，呃，再复制粘贴第三遍。<br>CS61A的第一个project是要制作一个叫hog的小游戏。以下是一些关于这个project的一些碎碎念，希望能帮到有需要的同学们。<br>详情请参考：<a target="_blank" rel="noopener" href="https://cs61a.org/proj/hog/">https://cs61a.org/proj/hog/</a><br>这是Hog项目的主要网站（作业要求），本文之后的内容将会围绕这里的题目。<br>以及课程课本的翻译件：<a target="_blank" rel="noopener" href="https://composingprograms.netlify.app/">https://composingprograms.netlify.app/</a><br>非常好课本，使我的理解加深十倍甚至九倍。</p>
+<p>如果把Hog的规则和追加规则也写进来的话，太长了，恕我贴一下第一篇的链接，请诸君自己看一看～</p>
+<p>本篇内容是在理解规则，并且写完了游戏模拟器（核心？）部分的基础上！如果还记得在这里“策略”是什么意思就更好了！虽说接下来马上就会又提到的。</p>
+<h2 id="回顾：策略是什么？"><a href="#回顾：策略是什么？" class="headerlink" title="回顾：策略是什么？"></a>回顾：策略是什么？</h2><p>策略（strategy）是一个函数。<br>在自己的回合中，策略函数需要输入自己和对手的分数。<br>而策略函数的返回值，是这回合自己打算投的骰子数量。<br>理解这点之后，就可以解决之后的问题了。</p>
+<p>本篇基本上都是和固定投掷几个骰子的策略相关。</p>
+<h2 id="第六题：always-roll-n"><a href="#第六题：always-roll-n" class="headerlink" title="第六题：always_roll(n)"></a>第六题：<code>always_roll(n)</code></h2><p><code>always_roll(n)</code>策略，顾名思义，就是<strong>无论什么情况</strong>，都只投n个骰子。</p>
+<p>但是！<code>always_roll()</code>这个函数，它的返回值是一个<strong>策略</strong>。也就是说它是个高阶函数。</p>
+<p>或许可以复习一下这个：<br><a target="_blank" rel="noopener" href="https://composingprograms.netlify.app/1/6">https://composingprograms.netlify.app/1/6</a></p>
+<p>在本系列的第一篇中也出现过高阶函数。</p>
+<p>于是我们需要在<code>always_roll</code>里定义一个叫做strategy的函数然后返回它。<br>strategy的输出一直是n就可以了。</p>
+<p>这次的代码如下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">always_roll</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;原有注释说明已省略</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">assert</span> n &gt;= <span class="number">0</span> <span class="keyword">and</span> n &lt;= <span class="number">10</span></span><br><span class="line">    <span class="comment"># BEGIN PROBLEM 6</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">strategy</span>(<span class="params">score, opponent_score</span>):</span><br><span class="line">        <span class="keyword">return</span> n</span><br><span class="line">    <span class="keyword">return</span> strategy</span><br><span class="line">    <span class="comment"># END PROBLEM 6</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="第七题：is-always-roll函数"><a href="#第七题：is-always-roll函数" class="headerlink" title="第七题：is_always_roll函数"></a>第七题：<code>is_always_roll</code>函数</h2><p>我们需要在这里测试：一个策略是否是<code>always_roll</code>。<br>我想到的做法只有一个：用for循环把所有可能性全列一遍。</p>
+<p>我们对0～goal的所有己方分数循环，每个循环中，再对0～goal的所有对手分数循环。<br>两层循环中，用if判定strategy(i,j)是否等于strategy(0,0)。只要有一种不相等，就return False<br>所有循环都走完，还没有不相等，那就return True。</p>
+<p>是举反例证伪的思路呢。</p>
+<p>还是附一下代码吧。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">is_always_roll</span>(<span class="params">strategy, goal=GOAL</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;原有注释说明已省略</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># BEGIN PROBLEM 7</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, goal):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, goal):</span><br><span class="line">            <span class="keyword">if</span> strategy(i, j) != strategy(<span class="number">0</span>, <span class="number">0</span>):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="comment"># END PROBLEM 7</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="第八题：make-averaged函数"><a href="#第八题：make-averaged函数" class="headerlink" title="第八题：make_averaged函数"></a>第八题：<code>make_averaged</code>函数</h2><p>这个高阶函数的作用是：重复调用times_called遍original_function（两者皆为此函数的输入参数），后取均值。</p>
+<p>在这里我们来回答一些OK评分器的问题：</p>
+<p>Q：为什么这个函数是个高阶函数？（原因之一）<br>A：它以函数作为输入参数！（至少我是这么回答的，它算我对）</p>
+<p>Q：传入make_averaged这个函数的函数，有多少参数？<br>A：任意数量皆可。因此我们需要用*args来调用它。</p>
+<p>为了理解这个问题（意思：我看的时候没懂），现在容我把OK里的题目贴出来：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> hog <span class="keyword">import</span> *</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dice = make_test_dice(<span class="number">3</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>averaged_roll_dice = make_averaged(roll_dice, <span class="number">1000</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># Average of calling roll_dice 1000 times</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># Enter a float (e.g. 1.0) instead of an integer</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>averaged_roll_dice(<span class="number">2</span>, dice)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>最后的输出应该是多少呢？</p>
+<p>首先dice是一个骰子函数，每次执行都会输出数字。这里是固定为3 1 6 5循环的顺序。</p>
+<p>roll_dice是什么呢？是第一题（请见第二篇文章）要求写的函数，是包含了Sow Sad规则的记分函数。</p>
+<p>也就是说，我们这次要make_average的对象，是算分。<br>averaged_roll_dice是一个函数，它的作用是，执行1000次计算roll_dice(…)，并计均分。</p>
+<p>最后，到执行averaged_roll_dice(2, dice)的时候，就很明确了：这里的两个参数是给roll_dice(…)的。</p>
+<p>所以，这段代码的含义是：每次roll两下dice，计算均分。</p>
+<p>第一回投出3分和1分，计为1分（触发Sow Sad），第二回投出5分和6分，计为11分。</p>
+<p>因此，均分是：6.0分！（因为要求写成float）</p>
+<p>上面的例子里也提到了：make_averaged(…)的输出结果是个函数，因此我们在这个函数里要做的事情是，定义一个新的函数，然后输出它。</p>
+<p>在这个函数内部，我们需要计算执行多次某函数之后的均值。</p>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">make_averaged</span>(<span class="params">original_function, times_called=<span class="number">1000</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;原有注释已省略</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># BEGIN PROBLEM 8</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">averaged_function</span>(<span class="params">*args</span>):</span><br><span class="line">        s = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(times_called):</span><br><span class="line">            s += original_function(*args)</span><br><span class="line">        <span class="keyword">return</span> s / times_called</span><br><span class="line">    <span class="keyword">return</span> averaged_function</span><br><span class="line">    <span class="comment"># END PROBLEM 8</span></span><br></pre></td></tr></table></figure>
+
+<p>补充说明：如果用lambda+list&#x2F;tuple，可以一行写完，但是没必要吧！</p>
+<h2 id="第九题：max-scoring-num-rolls函数"><a href="#第九题：max-scoring-num-rolls函数" class="headerlink" title="第九题：max_scoring_num_rolls函数"></a>第九题：<code>max_scoring_num_rolls</code>函数</h2><p>我们要通过暴力测试模拟出一直投几个骰子的收益最大。</p>
+<p>这个函数的输入是固定的：骰子函数（默认六面）与测试次数（默认1000）。</p>
+<p>输出则是对于这款骰子的最佳投掷个数。</p>
+<p>作业要求我们从1开始试到10。（为什么不试0？因为0本来就不适合当作策略。）</p>
+<p>这里考查的依然是求最大值。</p>
+<p>先把max_score和max_num_rolls设为0，然后从1～10循环，通过调用make_averaged计算均分。若均分大于最大分max_score，则记录当前的max_score和max_num_rolls。</p>
+<p>最后输出max_num_rolls。</p>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">max_scoring_num_rolls</span>(<span class="params">dice=six_sided, times_called=<span class="number">1000</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;原有注释已省略</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># BEGIN PROBLEM 9</span></span><br><span class="line">    <span class="string">&quot;*** YOUR CODE HERE ***&quot;</span></span><br><span class="line">    max_score = <span class="number">0</span></span><br><span class="line">    max_num_rolls = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">11</span>):</span><br><span class="line">        average_score = make_averaged(roll_dice, times_called)(i, dice)</span><br><span class="line">        <span class="keyword">if</span> average_score &gt; max_score:</span><br><span class="line">            max_score = average_score</span><br><span class="line">            max_num_rolls = i</span><br><span class="line">    <span class="keyword">return</span> max_num_rolls</span><br><span class="line">    <span class="comment"># END PROBLEM 9</span></span><br></pre></td></tr></table></figure>
+
+<p>根据以上模拟，我们得出结论：对于六面骰子，每次投掷6个骰子，得到的均分最高。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2024/10/11/hog004/">http://example.com/2024/10/11/hog004/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/10/12/hog005/" title="自学CS61A Project1 Hog（策略篇）（第二期）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">自学CS61A Project1 Hog（策略篇）（第二期）</div></div></a></div><div class="next-post pull-right"><a href="/2024/10/11/hog006/" title="自学CS61A Project1 Hog（追加篇）（第一期）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">自学CS61A Project1 Hog（追加篇）（第一期）</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E4%B9%8B%E6%98%AF%E6%AD%A3%E6%96%87"><span class="toc-number"></span> <span class="toc-text">总之是正文</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E9%A1%BE%EF%BC%9A%E7%AD%96%E7%95%A5%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">回顾：策略是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E9%A2%98%EF%BC%9Aalways-roll-n"><span class="toc-number">2.</span> <span class="toc-text">第六题：always_roll(n)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E9%A2%98%EF%BC%9Ais-always-roll%E5%87%BD%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">第七题：is_always_roll函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E9%A2%98%EF%BC%9Amake-averaged%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">第八题：make_averaged函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B9%9D%E9%A2%98%EF%BC%9Amax-scoring-num-rolls%E5%87%BD%E6%95%B0"><span class="toc-number">5.</span> <span class="toc-text">第九题：max_scoring_num_rolls函数</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/13/hog007/" title="自学CS61A Project1 Hog（追加篇）（第二期）">自学CS61A Project1 Hog（追加篇）（第二期）</a><time datetime="2024-10-13T12:54:32.620Z" title="Created 2024-10-13 13:54:32">2024-10-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/12/hog005/" title="自学CS61A Project1 Hog（策略篇）（第二期）">自学CS61A Project1 Hog（策略篇）（第二期）</a><time datetime="2024-10-12T16:12:54.173Z" title="Created 2024-10-12 17:12:54">2024-10-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/11/hog004/" title="自学CS61A Project1 Hog（策略篇）（第一期）">自学CS61A Project1 Hog（策略篇）（第一期）</a><time datetime="2024-10-11T17:58:42.642Z" title="Created 2024-10-11 18:58:42">2024-10-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/11/hog006/" title="自学CS61A Project1 Hog（追加篇）（第一期）">自学CS61A Project1 Hog（追加篇）（第一期）</a><time datetime="2024-10-11T17:56:49.722Z" title="Created 2024-10-11 18:56:49">2024-10-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/11/hog003/" title="自学CS61A Project1 Hog（核心篇）（第三期）">自学CS61A Project1 Hog（核心篇）（第三期）</a><time datetime="2024-10-11T16:16:43.121Z" title="Created 2024-10-11 17:16:43">2024-10-11</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

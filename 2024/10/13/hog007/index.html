@@ -1,0 +1,185 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>自学CS61A Project1 Hog（追加篇）（第二期） | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言我是愚谷ノ園みら，简称愚園みら，本账号的使用者之一的负责分享学习笔记的oc。啊，我不会干涉各位号主们的其他事物，只会默默在专栏文件夹里发CS&#x2F;AI相关的学习笔记。 总之，みら最近开始学习CS61A。打算记一点笔记激励自己学下去！ 说实话我已经把算分的东西写完了，接下来可以进入下一项作业了吧……不过我还是想看看ui怎么写的。 啊，忘了说的CS61A是一门CS相关的课？总之是UC Ber">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自学CS61A Project1 Hog（追加篇）（第二期）">
+<meta property="og:url" content="http://example.com/2024/10/13/hog007/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言我是愚谷ノ園みら，简称愚園みら，本账号的使用者之一的负责分享学习笔记的oc。啊，我不会干涉各位号主们的其他事物，只会默默在专栏文件夹里发CS&#x2F;AI相关的学习笔记。 总之，みら最近开始学习CS61A。打算记一点笔记激励自己学下去！ 说实话我已经把算分的东西写完了，接下来可以进入下一项作业了吧……不过我还是想看看ui怎么写的。 啊，忘了说的CS61A是一门CS相关的课？总之是UC Ber">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-10-13T12:54:32.620Z">
+<meta property="article:modified_time" content="2024-10-13T18:09:08.306Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/10/13/hog007/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '自学CS61A Project1 Hog（追加篇）（第二期）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-10-13 19:09:08'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Hexo"><span class="site-name">Hexo</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">自学CS61A Project1 Hog（追加篇）（第二期）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-10-13T12:54:32.620Z" title="Created 2024-10-13 13:54:32">2024-10-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-10-13T18:09:08.306Z" title="Updated 2024-10-13 19:09:08">2024-10-13</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="自学CS61A Project1 Hog（追加篇）（第二期）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我是愚谷ノ園みら，简称愚園みら，本账号的使用者之一的负责分享学习笔记的oc。啊，我不会干涉各位号主们的其他事物，只会默默在专栏文件夹里发CS&#x2F;AI相关的学习笔记。</p>
+<p>总之，みら最近开始学习CS61A。打算记一点笔记激励自己学下去！</p>
+<p>说实话我已经把算分的东西写完了，接下来可以进入下一项作业了吧……<br>不过我还是想看看ui怎么写的。</p>
+<p>啊，忘了说的CS61A是一门CS相关的课？总之是UC Berkeley的CS入门课。嘛反正点开这篇文章的人应该不需要我来介绍CS61A是什么了（大概……）</p>
+<p>以下部分都是基于已经装完环境，下载了相关课件，并且会使用ok进行评分的假设。<br>其实我也没怎么认真看课和课件，英语让人头大。</p>
+<p>我也是初学者，请多包涵～如有错误，敬请斧正！</p>
+<h1 id="总之是正文"><a href="#总之是正文" class="headerlink" title="总之是正文"></a>总之是正文</h1><p>因为很懒，我将会把这一段东西再重新，呃，再复制粘贴……。</p>
+<p>划掉。不复制黏贴了，看这篇必须要上一篇的基础所以不可能没看过上一篇。</p>
+<h1 id="hog-ui"><a href="#hog-ui" class="headerlink" title="hog_ui"></a>hog_ui</h1><h2 id="用户输入部分"><a href="#用户输入部分" class="headerlink" title="用户输入部分"></a>用户输入部分</h2><p>之后的两个函数都是用来读取用户输入数据的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_int</span>(<span class="params">prompt, lower, upper</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return an integer i such that i &gt;= lower and i &lt;= upper.&quot;&quot;&quot;</span></span><br><span class="line">    choice = <span class="built_in">input</span>(prompt)</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> choice.isnumeric() <span class="keyword">or</span> <span class="built_in">int</span>(choice) &lt; lower <span class="keyword">or</span> <span class="built_in">int</span>(choice) &gt; upper:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Please enter an integer from&#x27;</span>, lower, <span class="string">&#x27;to&#x27;</span>, upper)</span><br><span class="line">        choice = <span class="built_in">input</span>(prompt)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>(choice)</span><br></pre></td></tr></table></figure>
+
+<p>这个函数就很通用。读取用户input作为choice，然后判定是否符合要求：是0~10的int，不符合就一直循环问到符合为止。最后再把这个int输出。</p>
+<p>然后就是把这个询问过程整合成一个策略函数。<br>尽管问用户“你这次投几个”不像是一种游戏策略，更不像一个函数（至少我不觉得）。<br>但它确实可以是。</p>
+<p>这个函数的作用是，为某一玩家（0号或1号）生成一个互动策略函数（？）<br>因而它的输出是策略函数。</p>
+<p>老样子，先在函数内定义一个函数。然后先用print把该给玩家的信息打印出来，再调用get_int获取玩家的选择。这个choice就是该策略的输出值。<br>最后，输出这个策略。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">interactive_strategy</span>(<span class="params">who</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return a strategy for which the user provides the number of rolls.&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">strategy</span>(<span class="params">score, opponent_score</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Player&#x27;</span>, who, <span class="string">&#x27;, you have&#x27;</span>, score, <span class="string">&#x27;and your opponent has&#x27;</span>, opponent_score)</span><br><span class="line">        choice = get_int(<span class="string">&#x27;How many dice will you roll? &#x27;</span>, <span class="number">0</span>, <span class="number">10</span>)</span><br><span class="line">        <span class="keyword">return</span> choice</span><br><span class="line">    <span class="keyword">return</span> strategy</span><br></pre></td></tr></table></figure>
+
+<h2 id="游戏部分"><a href="#游戏部分" class="headerlink" title="游戏部分"></a>游戏部分</h2><p>游戏部分只有一个函数：运行游戏！</p>
+<p>它终于调用了上一篇文章第一个讲的<code>play_and_print</code>函数。这么做就相当于调动了第一篇里提到的所有功能。在这里，如果<code>num_players</code>是0，就会让两个5骰子电脑对打，如果是1或2，就会引用<code>interactive_strategy</code>，允许玩家自行输入。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">play_with</span>(<span class="params">num_players</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Play a game with NUM_PLAYERS interactive (human) players.&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> num_players == <span class="number">0</span>:</span><br><span class="line">        play_and_print(always_roll_5, always_roll_5)</span><br><span class="line">    <span class="keyword">elif</span> num_players == <span class="number">1</span>:</span><br><span class="line">        play_and_print(interactive_strategy(<span class="number">0</span>), always_roll_5)</span><br><span class="line">    <span class="keyword">elif</span> num_players == <span class="number">2</span>:</span><br><span class="line">        play_and_print(interactive_strategy(<span class="number">0</span>), interactive_strategy(<span class="number">1</span>))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;num_players must be 0, 1, or 2.&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="main部分"><a href="#main部分" class="headerlink" title="main部分"></a>main部分</h2><p>说实话，没见过主程序的时候，觉得这么一堆不认识的东西还是挺哈人的，但理解了之后，就理解了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@main</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">*args</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Select number of players and play a game.&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">import</span> argparse</span><br><span class="line">    parser = argparse.ArgumentParser(description=<span class="string">&quot;Play Hog&quot;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--num_players&#x27;</span>, <span class="string">&#x27;-n&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">0</span>,</span><br><span class="line">                        <span class="built_in">help</span>=<span class="string">&#x27;How many interactive players (0, 1, or 2)&#x27;</span>)</span><br><span class="line">    args = parser.parse_args()</span><br><span class="line">    play_with(args.num_players)</span><br></pre></td></tr></table></figure>
+
+<p>首先是@main这个装饰器。它并不是python中通常的用法。它是从别的地方引入的。下面是main这个函数。虽说我没看懂它，GPT解释了我也没懂，但似乎，经过这样包装之后好用多了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>(<span class="params">fn</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Call fn with command line arguments.  Used as a decorator.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    The main decorator marks the function that starts a program. For example,</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    @main</span></span><br><span class="line"><span class="string">    def my_run_function():</span></span><br><span class="line"><span class="string">        # function body</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Use this instead of the typical __name__ == &quot;__main__&quot; predicate.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> inspect.stack()[<span class="number">1</span>][<span class="number">0</span>].f_locals[<span class="string">&#x27;__name__&#x27;</span>] == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">        args = sys.argv[<span class="number">1</span>:] <span class="comment"># Discard the script name from command line</span></span><br><span class="line">        fn(*args) <span class="comment"># Call the main function</span></span><br><span class="line">    <span class="keyword">return</span> fn</span><br></pre></td></tr></table></figure>
+
+<p>parser的部分……我大概也就直接接受它就是这么用的吧。参数–num_players或者-n，默认为0，是整数。</p>
+<p>最后，当然是把命令行里输入的参数代入到play_with，然后运行。于是这就是UI的主程序了。</p>
+<p>以上就是hog_ui了。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2024/10/13/hog007/">http://example.com/2024/10/13/hog007/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/10/12/hog005/" title="自学CS61A Project1 Hog（策略篇）（第二期）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">自学CS61A Project1 Hog（策略篇）（第二期）</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E4%B9%8B%E6%98%AF%E6%AD%A3%E6%96%87"><span class="toc-number"></span> <span class="toc-text">总之是正文</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#hog-ui"><span class="toc-number"></span> <span class="toc-text">hog_ui</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E9%83%A8%E5%88%86"><span class="toc-number">1.</span> <span class="toc-text">用户输入部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B8%E6%88%8F%E9%83%A8%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text">游戏部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#main%E9%83%A8%E5%88%86"><span class="toc-number">3.</span> <span class="toc-text">main部分</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/13/hog007/" title="自学CS61A Project1 Hog（追加篇）（第二期）">自学CS61A Project1 Hog（追加篇）（第二期）</a><time datetime="2024-10-13T12:54:32.620Z" title="Created 2024-10-13 13:54:32">2024-10-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/12/hog005/" title="自学CS61A Project1 Hog（策略篇）（第二期）">自学CS61A Project1 Hog（策略篇）（第二期）</a><time datetime="2024-10-12T16:12:54.173Z" title="Created 2024-10-12 17:12:54">2024-10-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/11/hog004/" title="自学CS61A Project1 Hog（策略篇）（第一期）">自学CS61A Project1 Hog（策略篇）（第一期）</a><time datetime="2024-10-11T17:58:42.642Z" title="Created 2024-10-11 18:58:42">2024-10-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/11/hog006/" title="自学CS61A Project1 Hog（追加篇）（第一期）">自学CS61A Project1 Hog（追加篇）（第一期）</a><time datetime="2024-10-11T17:56:49.722Z" title="Created 2024-10-11 18:56:49">2024-10-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/11/hog003/" title="自学CS61A Project1 Hog（核心篇）（第三期）">自学CS61A Project1 Hog（核心篇）（第三期）</a><time datetime="2024-10-11T16:16:43.121Z" title="Created 2024-10-11 17:16:43">2024-10-11</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

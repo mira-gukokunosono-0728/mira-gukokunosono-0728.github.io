@@ -1,0 +1,202 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>自学CS61A Project1 Hog（核心篇）（第一期） | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言我是愚谷ノ園みら，简称愚園みら，本账号的使用者之一的负责分享学习笔记的oc，呃话说oc真的应该干涉现实事务吗？总之，みら最近开始学习CS61A。打算记一点笔记激励自己学下去。 啊，忘了说的CS61A是一门……课？总之是UC Berkeley的CS入门课。嘛反正点开这篇文章的人应该不需要我来介绍CS61A是什么了（大概……） 以下部分都是基于已经装完环境，下载了相关课件，并且会使用ok进行评分的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自学CS61A Project1 Hog（核心篇）（第一期）">
+<meta property="og:url" content="http://example.com/2024/10/08/hog001/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言我是愚谷ノ園みら，简称愚園みら，本账号的使用者之一的负责分享学习笔记的oc，呃话说oc真的应该干涉现实事务吗？总之，みら最近开始学习CS61A。打算记一点笔记激励自己学下去。 啊，忘了说的CS61A是一门……课？总之是UC Berkeley的CS入门课。嘛反正点开这篇文章的人应该不需要我来介绍CS61A是什么了（大概……） 以下部分都是基于已经装完环境，下载了相关课件，并且会使用ok进行评分的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2024-10-08T19:21:23.504Z">
+<meta property="article:modified_time" content="2024-10-11T17:57:25.148Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/10/08/hog001/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '自学CS61A Project1 Hog（核心篇）（第一期）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-10-11 18:57:25'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Hexo"><span class="site-name">Hexo</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">自学CS61A Project1 Hog（核心篇）（第一期）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-10-08T19:21:23.504Z" title="Created 2024-10-08 20:21:23">2024-10-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-10-11T17:57:25.148Z" title="Updated 2024-10-11 18:57:25">2024-10-11</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="自学CS61A Project1 Hog（核心篇）（第一期）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我是愚谷ノ園みら，简称愚園みら，本账号的使用者之一的负责分享学习笔记的oc，呃话说oc真的应该干涉现实事务吗？总之，みら最近开始学习CS61A。打算记一点笔记激励自己学下去。</p>
+<p>啊，忘了说的CS61A是一门……课？总之是UC Berkeley的CS入门课。嘛反正点开这篇文章的人应该不需要我来介绍CS61A是什么了（大概……）</p>
+<p>以下部分都是基于已经装完环境，下载了相关课件，并且会使用ok进行评分的假设。<br>我也是初学者，请多包涵～如有错误，敬请斧正！</p>
+<h1 id="总之是正文"><a href="#总之是正文" class="headerlink" title="总之是正文"></a>总之是正文</h1><p>CS61A的第一个project是要制作一个叫hog的小游戏。以下是一些关于这个project的一些碎碎念，希望能帮到有需要的同学们。<br>详情请参考：<a target="_blank" rel="noopener" href="https://cs61a.org/proj/hog/">https://cs61a.org/proj/hog/</a><br>这是Hog项目的主要网站（作业要求），本文之后的内容将会围绕这里的题目。<br>以及课程课本的翻译件：<a target="_blank" rel="noopener" href="https://composingprograms.netlify.app/">https://composingprograms.netlify.app/</a><br>非常好课本，使我的理解加深十倍甚至九倍。</p>
+<h2 id="Hog的规则"><a href="#Hog的规则" class="headerlink" title="Hog的规则"></a>Hog的规则</h2><p>两名玩家开局都是0分。<br>最早在回合结束时得到目标分（100分）的玩家胜利。<br>在每回合，每个玩家选择投掷0～10个骰子，若该回合所有骰子的点数均不为1，则玩家的得分为该回合所有骰子的点数之和。</p>
+<ul>
+<li><strong>Sow Sad</strong> 规则：若该玩家任意一个骰子掷到1点，则该回合只能增加一点得分。<br>以上是一般情况下Hog的规则。</li>
+</ul>
+<p><strong>追加规则：</strong></p>
+<ul>
+<li><strong>Boar Brawl</strong>：如果玩家选择投掷0个骰子，则获得对手分数的十位数与自己分数的个位数之差的绝对值的三倍。若这个数为0，则获得1分。<ul>
+<li>举例：对手为46分，己方为21分时，获得<code>3*abs(4-1)=9</code>分；对手为52分，己方为45分时，<code>3*abs(5-5)=0</code>，获得1分。</li>
+</ul>
+</li>
+<li><strong>Sus Fuss</strong>：如果结算时，玩家的分数有3或4个因数（包括自身与1），则分数自动增长到下一个质数。<ul>
+<li>举例：结算时玩家有21分，因为21有1，3，7，21四个因数，分数自动变为23。</li>
+</ul>
+</li>
+</ul>
+<p>或许每一年的作业要求和追加规则都会有所不同？至少今年的是这样的。</p>
+<h2 id="作业内容"><a href="#作业内容" class="headerlink" title="作业内容"></a>作业内容</h2><p>根据课程要求的说法，我们只需要修改<code>hog.py</code>的内容即可。</p>
+<h1 id="第一阶段（Phase-1）"><a href="#第一阶段（Phase-1）" class="headerlink" title="第一阶段（Phase 1）"></a>第一阶段（Phase 1）</h1><h2 id="第0题（Problem-0）"><a href="#第0题（Problem-0）" class="headerlink" title="第0题（Problem 0）"></a>第0题（Problem 0）</h2><p>第0题考查的是我们对老师给的代码的理解。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;Functions that simulate dice rolls.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">A dice function takes no arguments and returns a number from 1 to n</span></span><br><span class="line"><span class="string">(inclusive), where n is the number of sides on the dice.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Types of dice:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"> -  A fair dice produces each possible outcome with equal probability.</span></span><br><span class="line"><span class="string">   Two fair dice are already defined, four_sided and six_sided,</span></span><br><span class="line"><span class="string">   and are generated by the make_fair_dice function.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"> -  A test dice is deterministic: it always cycles through a fixed</span></span><br><span class="line"><span class="string">   sequence of values that are passed as arguments.</span></span><br><span class="line"><span class="string">   Test dice are generated by the make_test_dice function.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">make_fair_dice</span>(<span class="params">sides</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return a die that returns 1 to SIDES with equal chance.&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">assert</span> <span class="built_in">type</span>(sides) == <span class="built_in">int</span> <span class="keyword">and</span> sides &gt;= <span class="number">1</span>, <span class="string">&#x27;Illegal value for sides&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dice</span>():</span><br><span class="line">        <span class="keyword">return</span> randint(<span class="number">1</span>, sides)</span><br><span class="line">    <span class="keyword">return</span> dice</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">four_sided = make_fair_dice(<span class="number">4</span>)</span><br><span class="line">six_sided = make_fair_dice(<span class="number">6</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">make_test_dice</span>(<span class="params">*outcomes</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return a die that cycles deterministically through OUTCOMES.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; dice = make_test_dice(1, 2, 3)</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; dice()</span></span><br><span class="line"><span class="string">    1</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; dice()</span></span><br><span class="line"><span class="string">    2</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; dice()</span></span><br><span class="line"><span class="string">    3</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; dice()</span></span><br><span class="line"><span class="string">    1</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; dice()</span></span><br><span class="line"><span class="string">    2</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    This function uses Python syntax/techniques not yet covered in this course.</span></span><br><span class="line"><span class="string">    The best way to understand it is by reading the documentation and examples.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">assert</span> <span class="built_in">len</span>(outcomes) &gt; <span class="number">0</span>, <span class="string">&#x27;You must supply outcomes to make_test_dice&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> o <span class="keyword">in</span> outcomes:</span><br><span class="line">        <span class="keyword">assert</span> <span class="built_in">type</span>(o) == <span class="built_in">int</span> <span class="keyword">and</span> o &gt;= <span class="number">1</span>, <span class="string">&#x27;Outcome is not a positive integer&#x27;</span></span><br><span class="line">    index = <span class="built_in">len</span>(outcomes) - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dice</span>():</span><br><span class="line">        <span class="keyword">nonlocal</span> index</span><br><span class="line">        index = (index + <span class="number">1</span>) % <span class="built_in">len</span>(outcomes)</span><br><span class="line">        <span class="keyword">return</span> outcomes[index]</span><br><span class="line">    <span class="keyword">return</span> dice</span><br></pre></td></tr></table></figure>
+<p>实际上官网上的作业要求并没有给出这么多的代码，但总之先贴上去了，以免读者们忘记&#x2F;懒得下载课件。</p>
+<p>使用OK之后会跳出来两道问答题。</p>
+<p>OK的使用方式：</p>
+<p>进入hog目录下后，在Terminal中输入：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 ok -q 00 -u</span><br></pre></td></tr></table></figure>
+<h3 id="第一小问"><a href="#第一小问" class="headerlink" title="第一小问"></a>第一小问</h3><p>首先运行这段代码初始化一个骰子。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> hog <span class="keyword">import</span> *</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>test_dice = make_test_dice(<span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p>然后连续运行四次<code>&gt;&gt;&gt; test_dice()</code>会出现什么返回值呢？<br>答案是4，1，2，4。<br>不需要理解<code>make_test_dice(...)</code>这个函数到底写的是什么，只需要看懂注释即可。</p>
+<p>重读之后，我个人对这段代码的理解如下：<br>输入：一个列表，代表的是骰子的点数值，第几次就会投出列表的第几位。投掷次数超过列表长度时重复。<br>输出：骰子点数。<br>因而首先要保证：列表长度大于0，且列表的所有元素必须都是正整数。<br>接下来，我们需要一个变量来控制这次投掷选择列表中的第几个整数，也就是这里的<code>index</code>。<br>在这里，作者将index设定为<code>len(outcomes) - 1</code>。这和后面的代码是呼应的。<br><code>def dice():</code>部分则是定义了一个新的函数<code>dice()</code>。它是一个非纯函数，改变<code>index</code>这个变量的数值。<br>具体来说，每次执行<code>dice()</code>会使<code>index</code>变为<code>(index + 1) % len(outcomes)</code>。算是某种意义上的增加，但当它大于等于输入列表的长度时，又会归零。非常巧妙的是，配上最初的<code>len(outcomes) - 1</code>，第一次执行<code>dice()</code>的时候正好是从0开始。<br>最后的返回值是<code>outcome[index]</code>。<br>做这道题的时候，根据教材，实际上我们还没有学到列表！其实没必要现在就搞懂这些代码的含义。</p>
+<h3 id="第二小问"><a href="#第二小问" class="headerlink" title="第二小问"></a>第二小问</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Q: Which of the following is the correct way to &quot;roll&quot; a fair, six-sided die?</span><br><span class="line">Choose the number of the correct choice:</span><br><span class="line">0) six<span class="emphasis">_sided(1)</span></span><br><span class="line"><span class="emphasis">1) make_</span>test<span class="emphasis">_dice(6)</span></span><br><span class="line"><span class="emphasis">2) six_</span>sided</span><br><span class="line">3) six<span class="emphasis">_sided()</span></span><br><span class="line"><span class="emphasis">4) six_</span>sided(6)</span><br><span class="line">5) make<span class="emphasis">_fair_</span>dice(6)</span><br></pre></td></tr></table></figure>
+<p>为了应付这道题，我们需要看看代码注释以及代码本身！<br>首先是，理解题目的要求：</p>
+<p>执行哪一句命令，等同于掷骰子（即，生成1～6的随机数）？</p>
+<p>然后需要理清这些选项的类型。</p>
+<p><code>six_sided</code>是个函数。具体来说，它是执行了<code>make_test_dice(6)</code>的结果。后者的输出是<code>return dice</code>。</p>
+<p>这里的<code>dice</code>是<code>make_test_dice(...)</code>的内部函数。因此，调用<code>six_sided</code>就相当于调用这个<code>make_test_dice(...)</code>里面的<code>dice</code>。</p>
+<p>所以说，不能直接在python里输入<code>six_sided</code>。它是个函数，而不是变量，需要调用！</p>
+<p>直接输入会产生结果：<code>&lt;function dice.make_fair_dice.&lt;locals&gt;.dice()&gt;</code><br>就是说这是个函数，它是在dice这个文件下的make_fair_dice这个函数下的本地子函数dice()<br><strong>选项2错误！</strong></p>
+<p>但是这里的<code>six_sided()</code>的括号里是否应该有东西呢？答案是否定的。dice.py的代码中，<code>dice</code>是没有参数的。<br><strong>选项0，选项4错误！</strong></p>
+<p>运行<code>six_sided(1)</code>会产生错误：<code>TypeError: dice() takes 0 positional arguments but 1 was given</code><br>这也可以看出，<code>six_sided()</code>本质是套皮<code>dice()</code>。</p>
+<p>由此，我们可以看出，选项3<code>six_sided()</code>已经是正确答案了。<br><strong>选项3正确！</strong></p>
+<p>但是本着学习的精神，还是看看其他几个的问题出在哪里罢。<br>仔细阅读<code>make_test_dice(6)</code>和<code>make_fair_dice(6)</code>，可知，它们的输出值都是函数。<br>或者根据定义，其实<code>make_fair_dice(6) == six_sided</code><br>所以正确使用它（而不是调用）的方式是：<code>make_fair_dice(6)()</code></p>
+<p>至于<code>make_test_dice(6)</code>，使用它的方式是<code>make_test_dice(6)()</code>，但由上一题可知，这家伙只会一直输出6，不符合我们的要求。</p>
+<p>综上所述，只有第三个是对的。</p>
+<p>如果您使用的Hog课件和我年份不同，那么这里的题目可能有所不同，仅供参考～</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2024/10/08/hog001/">http://example.com/2024/10/08/hog001/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/10/09/hog002/" title="自学CS61A Project1 Hog（核心篇）（第二期）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">自学CS61A Project1 Hog（核心篇）（第二期）</div></div></a></div><div class="next-post pull-right"><a href="/2024/08/04/hello-world/" title="Hello World"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">Hello World</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E4%B9%8B%E6%98%AF%E6%AD%A3%E6%96%87"><span class="toc-number"></span> <span class="toc-text">总之是正文</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hog%E7%9A%84%E8%A7%84%E5%88%99"><span class="toc-number">1.</span> <span class="toc-text">Hog的规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E5%86%85%E5%AE%B9"><span class="toc-number">2.</span> <span class="toc-text">作业内容</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%88Phase-1%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">第一阶段（Phase 1）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC0%E9%A2%98%EF%BC%88Problem-0%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">第0题（Problem 0）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%B0%8F%E9%97%AE"><span class="toc-number">1.1.</span> <span class="toc-text">第一小问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E5%B0%8F%E9%97%AE"><span class="toc-number">1.2.</span> <span class="toc-text">第二小问</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/13/hog007/" title="自学CS61A Project1 Hog（追加篇）（第二期）">自学CS61A Project1 Hog（追加篇）（第二期）</a><time datetime="2024-10-13T12:54:32.620Z" title="Created 2024-10-13 13:54:32">2024-10-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/12/hog005/" title="自学CS61A Project1 Hog（策略篇）（第二期）">自学CS61A Project1 Hog（策略篇）（第二期）</a><time datetime="2024-10-12T16:12:54.173Z" title="Created 2024-10-12 17:12:54">2024-10-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/11/hog004/" title="自学CS61A Project1 Hog（策略篇）（第一期）">自学CS61A Project1 Hog（策略篇）（第一期）</a><time datetime="2024-10-11T17:58:42.642Z" title="Created 2024-10-11 18:58:42">2024-10-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/11/hog006/" title="自学CS61A Project1 Hog（追加篇）（第一期）">自学CS61A Project1 Hog（追加篇）（第一期）</a><time datetime="2024-10-11T17:56:49.722Z" title="Created 2024-10-11 18:56:49">2024-10-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/11/hog003/" title="自学CS61A Project1 Hog（核心篇）（第三期）">自学CS61A Project1 Hog（核心篇）（第三期）</a><time datetime="2024-10-11T16:16:43.121Z" title="Created 2024-10-11 17:16:43">2024-10-11</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
